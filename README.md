@@ -5,8 +5,8 @@ Snake game implemented with a linked list, for gnu / linux (not planning to make
 ncurses mainly and a gnu based os.
 
 # How to compile
-g++ game.cpp -lncurses -o [filename]
-./[filename]
+    g++ game.cpp -lncurses -o [filename]
+    ./[filename]
 
 # How its implemented
 Again, its implemented with a linked list. The linked list is comprised of node objects that contain a cordinate, a direction, and a pointer to the father and child node in the list. This whole list manifests the snake; for the snake to move each node grabs the direction from their father node and updates their position with their new direction.
