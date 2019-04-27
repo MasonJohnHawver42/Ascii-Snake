@@ -8,8 +8,23 @@ ncurses mainly and a gnu based os.
     g++ game.cpp -lncurses -o [filename]
     ./[filename]
 
+# Controls
+w -> up
+
+s -> down
+
+a -> left
+
+d -> right
+
+r-> reverse
+
 # How its implemented
-Again, its implemented with a linked list. The linked list is comprised of node objects that contain a cordinate, a direction, and a pointer to the father and child node in the list. This whole list manifests the snake; for the snake to move each node grabs the direction from their father node and updates their position with their new direction.
+Again, its implemented with a linked list. The linked list is comprised of node objects that contain a cordinate, a direction, and a pointer to the father and child node in the list. This whole list manifests the snake. 
+
+How the snake moves: each node grabs the direction from their father node and updates their position with their new direction.
+
+How the snake reverses: each node grabs their childs direction then inverts it, then switches their parent and child node pointers. Finally the head and tail opf the snake are swapped.
 
 Everything else is simply, basic looping throght the linked list and oop stuff.
 
@@ -29,8 +44,6 @@ nada
 
 # Future
 make a menu class with the ability to add buttons with diferent funcs (setting values, onening pages, and etc). (ambitious, but can be used for multiple applictions and might prove to be usfull for a variety of things) (80% chance I will implement this in the future, but might not be for a while (finals are about to jumpsacre me)).
-
-make the snake reversable (classic old school problem I have never really attempted, but have gave thought to.) (90% chance of implementation.)
 
 
 
