@@ -43,6 +43,36 @@ public:
     return false;
   }
 
+  void reverseSnake()
+  {
+    Node * tmp;
+
+    Node * curr = head;
+    for(int i = 0; i < length; i++)
+    {
+      if(i != length - 1)
+      {
+        curr->x_dir = curr->child->x_dir;
+        curr->y_dir = curr->child->y_dir;
+      }
+
+
+      curr->invertDir();
+
+      tmp = curr->parent;
+      curr->parent = curr->child;
+      curr->child = tmp;
+
+      curr = curr->parent;
+    }
+
+    tmp = tail;
+    tail = head;
+    head = tmp;
+
+    clearDrawing();
+  }
+
   void updateLifeStatus()
   {
     dead = selfCollistion();
@@ -71,7 +101,7 @@ public:
 
   void updateIO(char key)
   {
-    switch (key) {
+    switch (tolower(key)) {
       case 'w':
       move(0, -1);
       break;
@@ -86,6 +116,10 @@ public:
 
       case 'd':
       move(2, 0);
+      break;
+
+      case 'r':
+      reverseSnake();
       break;
     }
   }
