@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-;
+
 class Node
 {
 public:
@@ -42,6 +42,12 @@ public:
         bool colliding(Node* other)
         {
           return x == other->x && y == other->y;
+        }
+
+        void invertDir()
+        {
+          x_dir *= -1;
+          y_dir *= -1;
         }
 
         void update(int x_lim, int x_min, int y_lim, int y_min)
