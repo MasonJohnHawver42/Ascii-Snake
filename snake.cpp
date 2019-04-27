@@ -129,12 +129,15 @@ public:
   {
     char headChar = '@';
     if(dead) { headChar = 'X'; }
+
     mvaddch(head->y, head->x, headChar);
+
+    if(head->child){mvaddch(head->child->y, head->child->x, '#');}
   }
 
   void clearDrawing()
   {
-    mvaddch(head->y, head->x, '#');
+    //mvaddch(head->y, head->x, '#');
     mvaddch(tail->y, tail->x, ' ');
   }
 
