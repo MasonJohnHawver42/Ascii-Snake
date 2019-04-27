@@ -37,10 +37,10 @@ let the tail of the snake relocate the apple (lazy, but less comutation).
 Or! check the apple isn't being placed in the whole snake (computation heavy, and isn't more than 5 - 10 lines of code).
 
 prob_2:
-the border gets magically earased. Why! dunno (pls help).
+the border gets magically earased. Why! dunno.
 
 fix_2:
-nada
+have a method to check coordinates are in the border, and only place carachters when they are within the border. (doesn't fix og problem and has to be used everytime a char is placed)
 
 # Future
 make a menu class with the ability to add buttons with diferent funcs (setting values, onening pages, and etc). (ambitious, but can be used for multiple applictions and might prove to be usfull for a variety of things) (80% chance I will implement this in the future, but might not be for a while (finals are about to jumpsacre me)).
