@@ -30,18 +30,27 @@ public:
     }
   }
 
-  int updateApples(int snake_x, int snake_y)
+  void update(int snake_x, int snake_y, int * applesEaten)
   {
     int n = 0;
     for(int i = 0; i < num_apples; i++)
     {
-      if(abs((apples + i)->x - snake_x) == 0 & (apples + i)->y - snake_y == 0)
+      if((apples + i)->coliding(snake_x, snake_y))
       {
-        *(apples + i) = *Apple::rndApple(x_max, x_min, y_max, y_min);
-        n++;
+        Apple * new_apple = Apple::rndApple(x_max, x_min, y_max, y_min);
+        *(apples + i) = *new_apple;
+        new_apple->drawApple();
+        *applesEaten += 1;
       }
     }
-    return n;
+  }
+
+  void drawApples()
+  {
+    for(int i = 0; i < num_apples; i++)
+    {
+      (apples + i)->drawApple();
+    }
   }
 
   std::string toString()
