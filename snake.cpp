@@ -1,5 +1,5 @@
 #include "node.cpp"
-
+#include <ncurses.h>
 
 class Snake
 {
@@ -11,11 +11,13 @@ public:
 
   bool dead = false;
 
-  Snake(int x, int y, int x_dir, int y_dir)
+  Snake(int len, int x, int y, int x_dir, int y_dir)
   {
     Node* Nodehead = new Node(x, y, x_dir, y_dir);
     head = Nodehead;
     tail = Nodehead;
+
+    for(int i = 0; i < len - 1; i++) { addNode(); }
   }
 
   void addNode()
@@ -27,7 +29,26 @@ public:
     length++;
   }
 
-  void updateAll(int x_lim, int x_min, int y_lim, int y_min)
+  bool selfCollistion()
+  {
+    Node* curr = head;
+
+    for(int i = 0; i < length; i++)
+    {
+
+      if(curr->colliding(head) && i != 0) { return TRUE; }
+      curr = curr->child;
+    }
+
+    return false;
+  }
+
+  void updateLifeStatus()
+  {
+    dead = selfCollistion();
+  }
+
+  void updateNodes(int x_lim, int x_min, int y_lim, int y_min)
   {
     Node* curr = tail;
 
@@ -38,6 +59,7 @@ public:
     }
   }
 
+
   void move(int x_dir, int y_dir)
   {
     if(head->x_dir * -1 != x_dir || head->y_dir * -1 != y_dir)
@@ -47,10 +69,74 @@ public:
     }
   }
 
+  void updateIO(char key)
+  {
+    switch (key) {
+      case 'w':
+      move(0, -1);
+      break;
+
+      case 's':
+      move(0, 1);
+      break;
+
+      case 'a':
+      move(-2, 0);
+      break;
+
+      case 'd':
+      move(2, 0);
+      break;
+    }
+  }
+
+
+  void updateDrawing()
+  {
+    char headChar = '@';
+    if(dead) { headChar = 'X'; }
+    mvaddch(head->y, head->x, headChar);
+  }
+
+  void clearDrawing()
+  {
+    mvaddch(head->y, head->x, '#');
+    mvaddch(tail->y, tail->x, ' ');
+  }
+
+  void update(int xmax, int xmin, int ymax, int ymin)
+  {
+    clearDrawing();
+    updateIO(getch());
+    updateNodes(xmax, xmin, ymax, ymin);
+    updateLifeStatus();
+    updateDrawing();
+  }
+
+
+  void updateLen(int new_nodes)
+  {
+    for(int i = 0; i < new_nodes; i++) { addNode(); }
+  }
+
   int getScore()
   {
     return (length - 1) * 10;
   }
+
+  void drawSnake()
+  {
+    Node* curr = head;
+
+    for(int i = 0; i < length; i++)
+    {
+      mvaddch(curr->y, curr->x, '#');
+      curr = curr->child;
+    }
+
+    mvaddch(head->y, head->x, '@');
+  }
+
 
   std::string toString()
   {
