@@ -45,6 +45,7 @@ nada
 # Future
 make a menu class with the ability to add buttons with diferent funcs (setting values, onening pages, and etc). (ambitious, but can be used for multiple applictions and might prove to be usfull for a variety of things) (80% chance I will implement this in the future, but might not be for a while (finals are about to jumpsacre me)).
 
+fix the speling erors in here (10% chance of me ever doing this, but be welcome to if you want too.)
 
 
 # Author
