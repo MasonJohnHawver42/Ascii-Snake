@@ -39,6 +39,11 @@ public:
                 child = chld;
         }
 
+        bool colliding(Node* other)
+        {
+          return x == other->x && y == other->y;
+        }
+
         void update(int x_lim, int x_min, int y_lim, int y_min)
         {
 
