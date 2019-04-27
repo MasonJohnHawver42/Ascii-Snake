@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <ncurses.h>
 #include <string>
 
 using namespace std;
@@ -24,6 +25,16 @@ public:
     int y1 = (rand() % (ymax - ymin)) + ymin;
 
     return new Apple(x1, y1);
+  }
+
+  bool coliding(int x1, int y1)
+  {
+    return x - x1 == 0 && y - y1 == 0;
+  }
+
+  void drawApple()
+  {
+    mvaddch(y, x, '$');
   }
 
   std::string toString()
