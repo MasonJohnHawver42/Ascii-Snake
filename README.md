@@ -49,4 +49,4 @@ fix the speling erors in here (10% chance of me ever doing this, but be welcome 
 
 
 # Author
-Mason John Hawver, freshman @ wvhs.
+Mason John Hawver, freshman @ wvhs (http://wvhs.ipsd.org/Default.aspx).
